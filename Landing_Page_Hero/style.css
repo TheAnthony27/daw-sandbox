@@ -1,0 +1,309 @@
+/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN GLOBAL (:root)
+   ========================================================================== */
+:root {
+  /* Paleta de colores */
+  --bg-color: #0f172a;          /* Azul muy oscuro para el fondo */
+  --card-bg: #1e293b;           /* Azul oscuro para las tarjetas y nav móvil */
+  --text-main: #f8fafc;         /* Blanco roto para texto principal */
+  --text-muted: #94a3b8;        /* Gris claro para texto secundario */
+  --accent-primary: #6366f1;    /* Índigo brillante para botones primarios */
+  --accent-hover: #4f46e5;      /* Color al pasar el ratón por encima */
+  --border-color: #334155;      /* Bordes sutiles */
+
+  /* Tipografía y Espaciado */
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --transition-fast: 0.2s ease;
+}
+
+/* ==========================================================================
+   2. CSS RESET Y ESTILOS BASE
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ==========================================================================
+   3. BARRA DE NAVEGACIÓN (NAVBAR)
+   ========================================================================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto; /* Centra la barra horizontalmente */
+  position: relative;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+/* Enlaces de navegación */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-menu a {
+  color: var(--text-muted);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.nav-menu a:hover {
+  color: var(--text-main);
+}
+
+/* Botón CTA dentro de la Navbar */
+.nav-cta {
+  background-color: var(--accent-primary);
+  color: #fff !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast) !important;
+}
+
+.nav-cta:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Botón Hamburguesa (Oculto por defecto en escritorio) */
+.menu-toggle {
+  display: none;
+  font-size: 1.75rem;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   4. SECCIÓN HERO (GRID PRINCIPAL)
+   ========================================================================== */
+.hero {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem 2rem;
+
+  /* CSS Grid para dividir la pantalla en 2 columnas principales */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
+  align-items: center; /* Alinea verticalmente las 2 columnas al centro */
+}
+
+/* --- Columna Izquierda: Titular y CTA --- */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Forzamos que cada span esté en su propia línea */
+.hero-title span {
+  display: block;
+}
+
+/* Aplicamos un degradado al segundo texto del título */
+.hero-title span:nth-child(2) {
+  background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  max-width: 500px;
+}
+
+/* Botones de acción */
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn.primary {
+  background-color: var(--accent-primary);
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn.secondary {
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+.btn.secondary:hover {
+  background-color: var(--border-color);
+}
+
+/* ==========================================================================
+   5. CUADRÍCULA DE ESTADÍSTICAS (2x2 STATS GRID)
+   ========================================================================== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas de igual ancho */
+  gap: 1.5rem;                           /* Hueco uniforme entre las tarjetas */
+}
+
+.stat-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-primary);
+}
+
+.stat-number {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   6. ADAPTACIÓN RESPONSIVE (MEDIA QUERIES)
+   ========================================================================== */
+
+/* Breakpoint para Tablets y Móviles (Pantallas <= 868px) */
+@media (max-width: 868px) {
+  
+  /* 1. Navbar y Menú Móvil */
+  .menu-toggle {
+    display: block; /* Hacemos visible el botón hamburguesa */
+    z-index: 100;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    
+    /* Ocultamos el menú por defecto con CSS */
+    display: none; 
+  }
+
+  /* Clase activa que añadiremos con JavaScript en el Paso 7 */
+  .nav-menu.is-active {
+    display: flex;
+  }
+
+  /* 2. Hero Grid: Pasa de 2 columnas a 1 sola columna */
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-top: 1rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    align-items: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%; /* Botones de ancho completo en móvil */
+  }
+}
+
+/* Breakpoint para Móviles Pequeños (Pantallas <= 480px) */
+@media (max-width: 480px) {
+  /* El Stats Grid 2x2 pasa a 1 columna en teléfonos pequeños */
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    align-items: center;
+  }
+}
